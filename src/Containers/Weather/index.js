@@ -7,20 +7,20 @@ import './styles.css'
 class Weather extends Component{
 
   renderWeather(cityData){
-    const name = cityData.city.name;
-    const temps = cityData.list.map(weather => weather.main.temp);
-    const pressure = cityData.list.map(weather => weather.main.pressure);
-    const humidity = cityData.list.map(weather => weather.main.humidity);
-    const { lon, lat } = cityData.city.coord;
+    const name = cityData.name;
+    const temp = cityData.main.temp;
+    const pressure = cityData.main.pressure;
+    const humidity = cityData.main.humidity;
+    const { lon, lat } = cityData.coord;
 
 
     return (
       <tbody key={name}>
         <tr >
           <td>{name}</td>
-          <td> {(temps[0]- 275.15).toFixed(0)}</td>
-          <td> {pressure[0]}</td>
-          <td> {humidity[0]}  </td>
+          <td> {(temp - 273.15).toFixed(0)}</td>
+          <td> {pressure * 0.75}</td>
+          <td> {humidity}  </td>
         </tr>
         <tr>
           <td colSpan={4} className="map">
@@ -39,7 +39,7 @@ class Weather extends Component{
         <tr>
           <th>City</th>
           <th>Temperature (C)</th>
-          <th>Presure (hPa)</th>
+          <th>Presure (mm cl. mr.)</th>
           <th>Humidity (%)</th>
         </tr>
         </thead>
